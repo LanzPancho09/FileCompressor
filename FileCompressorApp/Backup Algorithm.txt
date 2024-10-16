@@ -1,0 +1,205 @@
+﻿'For i As Integer = 0 To bytesRead - 1
+
+                '    Dim byteCode As String = ByteToBinary(buffer(i))
+
+                '    For j As Integer = 0 To byteCode.Length - 1
+
+                '        If totalByteToWrite <= 0 Then
+                '            'Exit For
+                '            Exit Do
+                '        End If
+
+                '        If byteCode(j) = "1" Then
+                '            currentNode = currentNode.getLNode()
+                '        ElseIf byteCode(j) = "0" Then
+                '            currentNode = currentNode.getRNode()
+                '        End If
+
+                '        'checks if the current node is leaf
+                '        If Not currentNode.HasChild() Then
+                '            Dim nodeData As Object() = currentNode.GetData()
+                '            'gets the byte code length and adding it to the readed bits.
+                '            Dim bitsReaded As Integer = dictionaryArray(nodeData(0), 2).ToString.Length
+
+                '            'write the decoded byte in the output file
+                '            FWriter.WriteByte(nodeData(0))
+                '            writedByte += 1
+                '            totalByteToWrite -= 1
+                '            Form1.writeSpeed += 1
+
+                '            'set the current node as root node.
+                '            currentNode = rootNode
+
+                '            Dim percentage As Double = writedByte / byteToWrite
+                '            Form1.overAllPercent = (percentage * 95) + 5
+                '            Form1.processPercent = percentage * 100
+                '        End If
+
+                '    Next
+
+                '    If Form1.errorCode = 5 Or Form1.errorCode = 6 Then
+                '        Return
+                '    End If
+
+                'Next
+
+
+				'Dim currentNode As Node = rootNode
+            'Dim buffer(131702) As Byte
+            'Dim bytesRead As Integer = FReader.Read(buffer, 0, buffer.Length)
+            'Dim bitArray As New BitArray(buffer)
+            'Dim index As Integer = 0
+            'Form1.readSpeed += bytesRead
+
+            'While True
+
+            '    If bitArray(index) Then
+            '        currentNode = currentNode.getLNode()
+            '    Else
+            '        currentNode = currentNode.getRNode()
+            '    End If
+            '    index += 1
+
+            '    'checks if the current node is leaf
+            '    If Not currentNode.HasChild() Then
+
+            '        'write the decoded byte in the output file
+            '        FWriter.WriteByte(currentNode.GetData(0))
+            '        writedByte += 1
+            '        totalByteToWrite -= 1
+            '        Form1.writeSpeed += 1
+
+            '        If totalByteToWrite <= 0 Then
+            '            Exit While
+            '        End If
+
+            '        'set the current node as root node.
+            '        currentNode = rootNode
+            '    End If
+
+            '    If index > (bytesRead * 8) - 1 Then
+            '        bytesRead = FReader.Read(buffer, 0, buffer.Length)
+            '        bitArray = New BitArray(buffer)
+            '        Form1.readSpeed += bytesRead
+            '        index = 0
+
+            '        Dim percentage As Double = writedByte / byteToWrite
+            '        Form1.overAllPercent = (percentage * 95) + 5
+            '        Form1.processPercent = percentage * 100
+
+            '        If Form1.errorCode = 5 Or Form1.errorCode = 6 Then
+            '            Return
+            '        End If
+
+            '        If bytesRead > 0 Then
+            '            Continue While
+            '        Else
+            '            Exit While
+            '        End If
+
+            '    End If
+
+            'End While
+
+            'bstream = New BitStream(FReader)
+
+            'Dim readedBytes As Integer = 0
+
+            'Do
+            '    Dim buffer((bstream.GetBufferLength() * 8) - 1) As Boolean
+            '    readedBytes = bstream.Read(buffer)
+            '    Form1.readSpeed += readedBytes
+
+            '    'Dim ctr As Integer = 0
+            '    'Dim binL As Integer = 7
+            '    For i As Integer = 0 To (readedBytes * 8) - 1
+
+            '        If totalByteToWrite <= 0 Then
+            '            Exit For
+            '        End If
+
+            '        'Dim index As Integer = (i + binL) - ctr
+
+            '        If buffer(i) Then
+            '            currentNode = currentNode.getLNode()
+            '        Else
+            '            currentNode = currentNode.getRNode()
+            '        End If
+
+            '        'checks if the current node is leaf
+            '        If Not currentNode.HasChild() Then
+            '            Dim nodeData As Object() = currentNode.GetData()
+            '            'gets the byte code length and adding it to the readed bits.
+            '            Dim bitsReaded As Integer = dictionaryArray(nodeData(0), 2).ToString.Length
+
+            '            'write the decoded byte in the output file
+            '            FWriter.WriteByte(nodeData(0))
+            '            writedByte += 1
+            '            totalByteToWrite -= 1
+            '            Form1.writeSpeed += 1
+
+            '            'set the current node as root node.
+            '            currentNode = rootNode
+
+            '            Dim percentage As Double = writedByte / byteToWrite
+            '            Form1.overAllPercent = (percentage * 95) + 5
+            '            Form1.processPercent = percentage * 100
+            '        End If
+
+            '        'If binL = 0 Then
+            '        '    binL = 7
+            '        '    ctr = 0
+            '        'Else
+            '        '    binL -= 1
+            '        '    ctr += 1
+            '        'End If
+
+            '        If Form1.errorCode = 5 Or Form1.errorCode = 6 Then
+            '            Return
+            '        End If
+            '    Next
+
+            'Loop While readedBytes > 0
+
+            'isBitStream = True
+
+            'While bstream.IsBitAvailable()
+
+            '    If totalByteToWrite <= 0 Then
+            '        'Exit For
+            '        Exit While
+            '    End If
+
+            '    If bstream.ReadBit() Then
+            '        currentNode = currentNode.getLNode()
+            '    Else
+            '        currentNode = currentNode.getRNode()
+            '    End If
+
+            '    'checks if the current node is leaf
+            '    If Not currentNode.HasChild() Then
+            '        Dim nodeData As Object() = currentNode.GetData()
+            '        'gets the byte code length and adding it to the readed bits.
+            '        Dim bitsReaded As Integer = dictionaryArray(nodeData(0), 2).ToString.Length
+
+            '        'write the decoded byte in the output file
+            '        FWriter.WriteByte(nodeData(0))
+            '        writedByte += 1
+            '        totalByteToWrite -= 1
+            '        Form1.writeSpeed += 1
+
+            '        'set the current node as root node.
+            '        currentNode = rootNode
+
+            '        Dim percentage As Double = writedByte / byteToWrite
+            '        Form1.overAllPercent = (percentage * 95) + 5
+            '        Form1.processPercent = percentage * 100
+            '    End If
+
+            '    If Form1.errorCode = 5 Or Form1.errorCode = 6 Then
+            '        Return
+            '    End If
+
+            'End While
+
+            'isBitStream = False
